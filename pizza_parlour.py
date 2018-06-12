@@ -1,32 +1,27 @@
 from employees import *
-
-class Customer:
-    def __init__(self, name):
-        self.name = name
-
-    def order_food(self, server):
-        print(self.name, 'orders from ', server.name)
-
-    def pay(self, server):
-        print(self.name, 'pays %s for the order' % server.name)
-
-
+from equipment import *
+from customer import *
 
 class PizzaParlour:
     def __init__(self):
-        self.server = Server("Matt", "Baker", 3, 40000)
-        self.chef = Chef("Meg", "O'Brien", 5, 60000)
+        self.server = Server("Matt")
+        self.chef = Chef("Meg")
+        self.owen = Owen()
+        self.mixer = Mixer()
 
     def order(self, name):
         customer = Customer(name)
         self.server.take_order()
         customer.order_food(self.server)
+        print('\n')
+        self.mixer.make_dough()
         self.chef.cook()
+        self.owen.bake()
+        print('\n')
         self.server.serve()
         customer.pay(self.server)
-        print('\n----------\n')
 
 
 action = PizzaParlour()
 action.order("Evan")
-action.order("Caroline")
+
