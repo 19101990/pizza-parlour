@@ -1,35 +1,33 @@
 class Person:
-    def __init__(self, name, surname):
+    def __init__(self, name):
         self.name = name
-        self.surname = surname
 
 
 class Employee(Person):
-    def __init__(self, name, surname, years_in_company, salary = 0):
-        super().__init__(name, surname)
+    def __init__(self, name, salary = 0):
+        super().__init__(name)
         self.salary = salary
-        self.name = name
-        self.surname = surname
-        self.years_in_company = years_in_company
 
 
 class Chef(Employee):
-    def __init__(self, name, surname, years_in_company, salary):
-        super().__init__(name, surname, years_in_company, salary)
+    def __init__(self, name, salary = 0):
+        super().__init__(name, salary)
 
     def cook(self):
-        print(self.name, 'is cooking')
+        print('>', self.name, 'is making the sauce')
+        print('>', self.name, 'is making the pizza')
 
 
 class Server(Employee):
-    def __init__(self, name, surname, years_in_company, salary):
-        super().__init__(name, surname, years_in_company, salary)
+    def __init__(self, name, salary = 0):
+        super().__init__(name, salary)
 
     def take_order(self):
-        print('Hi!, my name is ', self.name, '. What can I get you?')
+        print(self.name, ': Hi!, my name is ', self.name,
+              '. What can I get you?')
 
     def serve(self):
-        print(self.name, 'is serving the meal')
+        print(self.name, ': Here\'s your order.')
 
 
 
