@@ -1,6 +1,9 @@
 from employees import *
 from equipment import *
 from customer import *
+import sys
+import os
+import time
 
 class PizzaParlour:
     def __init__(self):
@@ -9,11 +12,19 @@ class PizzaParlour:
         self.owen = Owen()
         self.mixer = Mixer()
 
-    def order(self, name):
-        customer = Customer(name)
+    def prompt_for_name(self):
+        global name_option
+        name_option = input('What\'s your name?\n')
+
+    def order(self):
+        self.prompt_for_name()
+        customer = Customer(name_option)
         self.server.take_order()
         customer.order_food(self.server)
-        print('\n')
+        time.sleep(4)
+        os.system("cls")
+        print('Your food is being prepared')
+        
         self.mixer.make_dough()
         self.chef.cook()
         self.owen.bake()
@@ -22,6 +33,7 @@ class PizzaParlour:
         customer.pay(self.server)
 
 
+
 action = PizzaParlour()
-action.order("Evan")
+action.order()
 
