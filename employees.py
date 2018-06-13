@@ -23,8 +23,7 @@ class Server(Employee):
         super().__init__(name, salary)
 
     def take_order(self):
-        print(self.name, ': Hi!, my name is ', self.name,
-              '. What can I get you?')
+        print(self.name, ': Hi!, my name is ', self.name, '.')
 
     def serve(self):
         print(self.name, ': Here\'s your order.')
