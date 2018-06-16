@@ -1,9 +1,18 @@
-class Customer:
+from person import Person
+
+class Customer(Person):
     def __init__(self, name):
-        self.name = name
+        super().__init__(name)
 
-    def order_food(self, server):
-        print(self.name, 'orders from ', server.name)
+    def eat_pizza(self):
+        pass
 
-    def pay(self, server):
-        print(self.name, 'pays %s for the order' % server.name)
+    def get_check(self):
+        pass
+
+    def look_at_check(self):
+        pass
+
+    def pay_for_food(self):
+        pass
+
