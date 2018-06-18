@@ -9,7 +9,6 @@ class PizzaParlour:
     pass
 
 
-
-action = PizzaParlour()
-action.order()
+#action = PizzaParlour()
+#action.order()
 
