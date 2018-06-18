@@ -13,7 +13,6 @@ class Employee(Person):
         self.salary = salary
 
 
-
 class Server(Employee):
     def __init__(self, name, salary = 0):
         super().__init__(name, salary)
@@ -72,7 +71,6 @@ class Server(Employee):
 
     def bring_check(self):
         pass
-
 
 
 class Cook(Employee):
