@@ -1,7 +1,9 @@
 from person import Person
 from pizza_menu import pizzas
 
+
 check = []
+
 
 class Customer(Person):
     def __init__(self, name):
