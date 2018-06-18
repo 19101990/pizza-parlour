@@ -1,10 +1,11 @@
 from person import Person
 from customer import Customer
 from pizza_menu import pizzas
+from drink_menu import *
+import sys
+import os
 import time
 
-
-# ------- Employee ------- #
 
 class Employee(Person):
     def __init__(self, name, salary = 0):
@@ -12,7 +13,6 @@ class Employee(Person):
         self.salary = salary
 
 
-# ------- SERVER ------- #
 
 class Server(Employee):
     def __init__(self, name, salary = 0):
@@ -22,6 +22,7 @@ class Server(Employee):
         print('Hi! My name is {}. What\'s your name?'.format(self.name))
         global name_option
         name_option = input('')
+        global c
         c = Customer(name_option)
         print('Nice to meet you, {}!'.format(c.name))
         time.sleep(1)
@@ -29,12 +30,39 @@ class Server(Employee):
         time.sleep(2)
 
     def show_pizza_menu(self):
-        print('\n')
+        os.system("cls")
         for i in pizzas:
             print(i, pizzas[i])
 
+    def ask_if_something_else(self):
+        choice = input('Would you like to order something else?\n')
+        if choice == 'y' or choice == 'yes':
+            self.show_pizza_menu()
+        elif choice == 'n' or choice == 'no':
+            self.offer_drinks()
+        else:
+            self.ask_if_something_else()
+
     def offer_drinks(self):
-        pass
+        choice = input('Would you like something to drink with your pizza?\n')
+        if choice == 'y' or choice == 'yes':
+            self.show_drink_menu()
+        elif choice == 'n' or choice == 'no':
+            print('Very well. I will bring your meal shortly.')
+        else:
+            self.offer_drinks()
+
+    def show_drink_menu(self):
+        os.system('cls')
+        print('SOFT DRINKS')
+        for i in drinks:
+            print(i, drinks[i])
+        print('\nBEERS')
+        for i in beers:
+            print(i, beers[i])
+        print('\nWINE')
+        for i in wine:
+            print(i, wine[i])
 
     def serve_drinks(self):
         pass
@@ -46,7 +74,6 @@ class Server(Employee):
         pass
 
 
-# ------- COOK ------- #
 
 class Cook(Employee):
     def __init__(self, name, salary = 0):
@@ -58,4 +85,7 @@ class Cook(Employee):
 s = Server("Matt")
 s.introduce()
 s.show_pizza_menu()
-
+c.choose_pizza()
+s.ask_if_something_else()
+c.choose_pizza()
+s.offer_drinks()
