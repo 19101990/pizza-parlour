@@ -1,5 +1,6 @@
 from person import Person
 from customer import Customer
+from equipment import Owen
 from pizza_menu import pizzas
 from drink_menu import *
 import sys
@@ -13,11 +14,16 @@ class Employee(Person):
         self.salary = salary
 
 
+
 class Server(Employee):
+
+    pizza_served = 0
+    
     def __init__(self, name, salary = 0):
         super().__init__(name, salary)
 
     def introduce(self):
+        os.system('cls')
         print('Hi! My name is {}. What\'s your name?'.format(self.name))
         global name_option
         name_option = input('')
@@ -27,26 +33,29 @@ class Server(Employee):
         time.sleep(1)
         print('Here\'s our menu:')
         time.sleep(2)
+        self.show_pizza_menu()
 
     def show_pizza_menu(self):
         os.system("cls")
         for i in pizzas:
             print(i, pizzas[i])
+        c.choose_pizza()
+        self.ask_if_something_else()
 
     def ask_if_something_else(self):
-        choice = input('Would you like to order something else?\n')
-        if choice == 'y' or choice == 'yes':
+        yNchoice = input('Would you like to order something else?\n')
+        if yNchoice == 'y' or yNchoice == 'yes':
             self.show_pizza_menu()
-        elif choice == 'n' or choice == 'no':
+        elif yNchoice == 'n' or yNchoice == 'no':
             self.offer_drinks()
         else:
             self.ask_if_something_else()
 
     def offer_drinks(self):
-        choice = input('Would you like something to drink with your pizza?\n')
-        if choice == 'y' or choice == 'yes':
+        yNchoice = input('Would you like something to drink with your pizza?\n')
+        if yNchoice == 'y' or yNchoice == 'yes':
             self.show_drink_menu()
-        elif choice == 'n' or choice == 'no':
+        elif yNchoice == 'n' or yNchoice == 'no':
             print('Very well. I will bring your meal shortly.')
         else:
             self.offer_drinks()
@@ -62,28 +71,70 @@ class Server(Employee):
         print('\nWINE')
         for i in wine:
             print(i, wine[i])
+        c.choose_drink()
+        self.ask_if_something_else_to_drink()
 
-    def serve_drinks(self):
-        pass
+    def ask_if_something_else_to_drink(self):
+        yNchoice = input('Would you like to order something else to drink?\n')
+        if yNchoice == 'y' or yNchoice == 'yes':
+            self.show_drink_menu()
+        elif yNchoice =='n' or yNchoice == 'no':
+            if self.pizza_served:
+                print('Very well. Enjoy your meal!')
+                # CUSTOMER EATING PIZZA
+                c.eat_pizza()
+            elif not self.pizza_served:
+                chef = Chef('Megan')
+                chef.process_order()
+        else:
+            self.ask_if_smething_else_to_drink()
+
 
     def serve_pizza(self):
-        pass
+        self.pizza_served = 1
+        os.system('cls')
+        print('Here\'s your pizza, {}. '.format(c.name), end='')
+        self.ask_if_something_else_to_drink()
 
     def bring_check(self):
         pass
 
 
-class Cook(Employee):
+
+class Chef(Employee):
     def __init__(self, name, salary = 0):
         super().__init__(name, salary)
 
-    def make_pizza(self):
-        pass
+    def process_order(self):
+        os.system('cls')
+        print('Your order is being processed')
+        time.sleep(1)
+        os.system('cls')
+        print('Your order is being processed.')
+        time.sleep(1)
+        os.system('cls')
+        print('Your order is being processed..')
+        time.sleep(1)
+        os.system('cls')
+        print('Your order is being processed...')
+        time.sleep(1)
+        os.system('cls')
+        print('Your order is being processed')
+        time.sleep(1)
+        os.system('cls')
+        print('Your order is being processed.')
+        time.sleep(1)
+        os.system('cls')
+        print('Your order is being processed..')
+        time.sleep(1)
+        os.system('cls')
+        print('Your order is being processed...')
+        time.sleep(1)
+        s.serve_pizza()
 
+
+
+        
+        
 s = Server("Matt")
 s.introduce()
-s.show_pizza_menu()
-c.choose_pizza()
-s.ask_if_something_else()
-c.choose_pizza()
-s.offer_drinks()
