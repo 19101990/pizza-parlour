@@ -9,6 +9,3 @@ class PizzaParlour:
     pass
 
 
-#action = PizzaParlour()
-#action.order()
-
