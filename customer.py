@@ -1,9 +1,8 @@
 from person import Person
 from pizza_menu import pizzas
-
+from drink_menu import *
 
 check = []
-
 
 class Customer(Person):
     def __init__(self, name):
@@ -11,10 +10,13 @@ class Customer(Person):
 
     def choose_pizza(self):
         global check
-        choice = input('[HINT: type pizza name and hit enter]\n')
-        choice = choice.upper()
-        check.append(pizzas[choice])
-        print(check)
+        pizza_choice = input('[HINT: type pizza name and hit enter]\n').upper()
+        check.append(pizzas[pizza_choice])
+
+    def choose_drink(self):
+        global check
+        drink_choice = input('[HINT: type drink name and hit enter]\n').upper()
+        check.append(all_drinks[drink_choice])
 
     def eat_pizza(self):
         pass
